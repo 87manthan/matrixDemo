@@ -1,0 +1,21 @@
+name: demo-actions
+
+on:
+  push:
+  branchs main:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Build project
+        run: |
+          mkdir output
+          echo "Hello, Artifact!" > output/hello.txt
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: output/
